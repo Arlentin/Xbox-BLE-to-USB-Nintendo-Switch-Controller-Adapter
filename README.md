@@ -44,18 +44,6 @@ The Arduino acts as a bridge between the Bluetooth connection and the Switch's U
 
 ---
 
-## ⚠️ Recovery Mode
-
-Because the board spoofs a USB controller, the default serial COM port may sometimes disappear from your PC during emulation. 
-
-If this happens and you cannot upload a new sketch:
-1. Double-press the physical **Reset Button** on the Arduino board.
-2. The onboard yellow LED will begin pulsing slowly, indicating it is in hardware **Bootloader Mode**.
-3. Select the newly appeared COM port in the Arduino IDE.
-4. Upload a basic sketch (like **File > Examples > 01.Basics > Blink**) to clean the USB port and restore standard serial behavior.
-
----
-
 ## 🔧 Protocol Reference
 
 ### Handshake Subcommands
