@@ -19,11 +19,9 @@ The Arduino acts as a bridge between the Bluetooth connection and the Switch's U
 
 ## 📂 File Walkthrough
 
-* **`proud-heisenberg.ino`**: The main sketch. It initializes the BLE stack and runs the fast-polling update loop.
+* **`xbox-to-switch.ino`**: The main sketch. It initializes the BLE stack and runs the fast-polling update loop.
 * **`XboxBLE.h`**: Handles Bluetooth scanning, secure pairing (using Security Manager), parsing Xbox inputs, and writing haptic feedback.
 * **`SwitchUSB.h`**: Emulates the Pro Controller's USB interface (VID 0x057E, PID 0x2009), mimics factory SPI calibration values, and parses incoming rumble data.
-* **`USB-HID-Notes.md`**: Technical notes on the Switch Pro Controller USB handshake sequence.
-* **`rumble_data_table.md`**: Conversions and formulas for Switch haptic frequency/amplitude parameters.
 
 ---
 
@@ -40,9 +38,21 @@ The Arduino acts as a bridge between the Bluetooth connection and the Switch's U
 
 ### 2. Flashing
 1. Connect the Arduino to your computer.
-2. Open **`proud-heisenberg.ino`**.
+2. Open **`xbox-to-switch.ino`**.
 3. Under **Tools > Board**, select **Arduino Nano 33 BLE**. Select the correct COM port under **Tools > Port**.
 4. Click **Upload**. The onboard LED will pulse when flashing is complete.
+
+---
+
+## ⚠️ Recovery Mode
+
+Because the board spoofs a USB controller, the default serial COM port may sometimes disappear from your PC during emulation. 
+
+If this happens and you cannot upload a new sketch:
+1. Double-press the physical **Reset Button** on the Arduino board.
+2. The onboard yellow LED will begin pulsing slowly, indicating it is in hardware **Bootloader Mode**.
+3. Select the newly appeared COM port in the Arduino IDE.
+4. Upload a basic sketch (like **File > Examples > 01.Basics > Blink**) to clean the USB port and restore standard serial behavior.
 
 ---
 
