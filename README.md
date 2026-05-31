@@ -64,12 +64,14 @@ The Switch sends vibration instructions as 10-byte packets containing frequency 
 
 ---
 
-## 🐛 Known Bugs & Limitations
+## Known Bugs & Limitations
 
 1. **Button Remapping**: You cannot use the Nintendo Switch system settings to remap the controller buttons. If you want to change the layout, you must edit the button mappings directly in `XboxBLE.h` and re-flash the Arduino.
 2. **PC Stick Compatibility**: The left analog stick does not work if you connect the Arduino to a computer (e.g., for testing). However, it works fine on the Nintendo Switch itself.
 3. **Inconsistent Settings Menu Rumble**: If you spam-click the vibration test option in the Switch's controller settings menu, the rumble duration can feel inconsistent. This has only been noticed inside the system settings test screen; rumble behaves normally during actual gameplay.
 4. **No Battery Status**: The Switch does not display the actual battery percentage of the Xbox controller (it will always show a full battery icon).
 5. **No Gyro/Motion Control**: Gyroscope and motion controls are not supported (this is a hardware limitation of the Xbox controller itself, which lacks a gyroscope).
-6. **Tested Hardware**: This project has only been tested using an **Xbox Series S/X controller**, an **Arduino Nano 33 BLE Sense**, and a **Nintendo Switch 2** console. Other hardware revisions or controllers are untested.
 
+### Limitations
+
+**Tested Hardware**: This project has only been tested using an **Xbox Series S/X controller**, an **Arduino Nano 33 BLE Sense**, and a **Nintendo Switch 2** console. Other hardware revisions or controllers are untested.
