@@ -22,8 +22,6 @@ The Arduino acts as a bridge between the Bluetooth connection and the Switch's U
 * **`xbox-to-switch.ino`**: The main sketch. It initializes the BLE stack and runs the fast-polling update loop.
 * **`XboxBLE.h`**: Handles Bluetooth scanning, secure pairing (using Security Manager), parsing Xbox inputs, and writing haptic feedback.
 * **`SwitchUSB.h`**: Emulates the Pro Controller's USB interface (VID 0x057E, PID 0x2009), mimics factory SPI calibration values, and parses incoming rumble data.
-* **`USB-HID-Notes.md`**: Technical notes on the Switch Pro Controller USB handshake sequence.
-* **`rumble_data_table.md`**: Conversions and formulas for Switch haptic frequency/amplitude parameters.
 
 ---
 
