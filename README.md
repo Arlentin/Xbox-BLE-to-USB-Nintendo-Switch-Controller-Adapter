@@ -1,6 +1,6 @@
 # Xbox-to-Switch BLE Controller Adapter
 
-This is a simple hobby project that turns an Arduino Nano 33 BLE into a USB adapter, allowing you to use a wireless Xbox controller on a Nintendo Switch. 
+This is a simple hobby project that turns an Arduino Nano 33 BLE into a USB adapter, allowing you to use a wireless Xbox controller on a Nintendo Switch.
 
 It uses Mbed OS native Bluetooth to pair with the Xbox controller and emulates a wired Switch Pro Controller over the USB port.
 
@@ -10,16 +10,16 @@ It uses Mbed OS native Bluetooth to pair with the Xbox controller and emulates a
 
 The Arduino acts as a bridge between the Bluetooth connection and the Switch's USB port:
 
-1. **Bluetooth**: The Arduino scans for a nearby Xbox controller (filtering by MAC address prefix or name), pairs with it, and subscribes to its input reports.
-2. **Mapping**: It parses the Xbox buttons and analog sticks, translating them to match the Switch layout (swapping A/B and X/Y buttons).
-3. **USB Emulation**: It registers as a wired Switch Pro Controller, responding to standard USB handshakes, player LED setup commands, and mock calibration data queries.
-4. **Rumble**: It intercepts rumble packets sent by the Switch, scales the haptic magnitudes, and writes them to the Xbox controller's vibration motors.
+* **Bluetooth**: The Arduino scans for a nearby Xbox controller (filtering by MAC address prefix or name), pairs with it, and subscribes to its input reports.
+* **Mapping**: It parses the Xbox buttons and analog sticks, translating them to match the Switch layout (swapping A/B and X/Y buttons).
+* **USB Emulation**: It registers as a wired Switch Pro Controller, responding to standard USB handshakes, player LED setup commands, and mock calibration data queries.
+* **Rumble**: It intercepts rumble packets sent by the Switch, scales the haptic magnitudes, and writes them to the Xbox controller's vibration motors.
 
 ---
 
 ## 📂 File Walkthrough
 
-* **`xbox-to-switch.ino`**: The main sketch. It initializes the BLE stack and runs the fast-polling update loop.
+* **`xbox-to-switch-main.ino`**: The main sketch. It initializes the BLE stack and runs the fast-polling update loop.
 * **`XboxBLE.h`**: Handles Bluetooth scanning, secure pairing (using Security Manager), parsing Xbox inputs, and writing haptic feedback.
 * **`SwitchUSB.h`**: Emulates the Pro Controller's USB interface (VID 0x057E, PID 0x2009), mimics factory SPI calibration values, and parses incoming rumble data.
 
@@ -38,7 +38,7 @@ The Arduino acts as a bridge between the Bluetooth connection and the Switch's U
 
 ### 2. Flashing
 1. Connect the Arduino to your computer.
-2. Open **`xbox-to-switch.ino`**.
+2. Open **`xbox-to-switch-main.ino`**.
 3. Under **Tools > Board**, select **Arduino Nano 33 BLE**. Select the correct COM port under **Tools > Port**.
 4. Click **Upload**. The onboard LED will pulse when flashing is complete.
 
@@ -71,6 +71,5 @@ The Switch sends vibration instructions as 10-byte packets containing frequency 
 3. **Inconsistent Settings Menu Rumble**: If you spam-click the vibration test option in the Switch's controller settings menu, the rumble duration can feel inconsistent. This has only been noticed inside the system settings test screen; rumble behaves normally during actual gameplay.
 4. **No Battery Status**: The Switch does not display the actual battery percentage of the Xbox controller (it will always show a full battery icon).
 5. **No Gyro/Motion Control**: Gyroscope and motion controls are not supported (this is a hardware limitation of the Xbox controller itself, which lacks a gyroscope).
-
-
-**Tested Hardware**: This project has only been tested using an **Xbox Series S/X controller**, an **Arduino Nano 33 BLE Sense**, and a **Nintendo Switch 2** console. Other hardware revisions or controllers are untested.
+  
+ **Tested Hardware**: This project has only been tested using an **Xbox Series S/X controller**, an **Arduino Nano 33 BLE Sense**, and a **Nintendo Switch 2** console. Other hardware revisions or controllers are untested.
