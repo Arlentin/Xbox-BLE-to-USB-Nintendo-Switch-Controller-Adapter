@@ -72,6 +72,5 @@ The Switch sends vibration instructions as 10-byte packets containing frequency 
 4. **No Battery Status**: The Switch does not display the actual battery percentage of the Xbox controller (it will always show a full battery icon).
 5. **No Gyro/Motion Control**: Gyroscope and motion controls are not supported (this is a hardware limitation of the Xbox controller itself, which lacks a gyroscope).
 
-### Limitations
 
 **Tested Hardware**: This project has only been tested using an **Xbox Series S/X controller**, an **Arduino Nano 33 BLE Sense**, and a **Nintendo Switch 2** console. Other hardware revisions or controllers are untested.
