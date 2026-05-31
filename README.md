@@ -22,6 +22,8 @@ The Arduino acts as a bridge between the Bluetooth connection and the Switch's U
 * **`xbox-to-switch.ino`**: The main sketch. It initializes the BLE stack and runs the fast-polling update loop.
 * **`XboxBLE.h`**: Handles Bluetooth scanning, secure pairing (using Security Manager), parsing Xbox inputs, and writing haptic feedback.
 * **`SwitchUSB.h`**: Emulates the Pro Controller's USB interface (VID 0x057E, PID 0x2009), mimics factory SPI calibration values, and parses incoming rumble data.
+* **`USB-HID-Notes.md`**: Technical notes on the Switch Pro Controller USB handshake sequence.
+* **`rumble_data_table.md`**: Conversions and formulas for Switch haptic frequency/amplitude parameters.
 
 ---
 
@@ -61,3 +63,15 @@ The adapter intercepts and responds to the following standard USB HID (`0x80` fr
 The Switch sends vibration instructions as 10-byte packets containing frequency and amplitude bands. Because the Xbox grip motors are strong, the haptic intensities are scaled:
 * **Intensity Scale**: Grip motor strength is capped at `4%` by default (adjustable via `#define XBOX_RUMBLE_INTENSITY_SCALE` in `XboxBLE.h`).
 * **Deadzone**: Any combined strength value below `2%` is forced to `0%` to ensure instant rumble cutoffs.
+
+---
+
+## 🐛 Known Bugs & Limitations
+
+1. **Button Remapping**: You cannot use the Nintendo Switch system settings to remap the controller buttons. If you want to change the layout, you must edit the button mappings directly in `XboxBLE.h` and re-flash the Arduino.
+2. **PC Stick Compatibility**: The left analog stick does not work if you connect the Arduino to a computer (e.g., for testing). However, it works fine on the Nintendo Switch itself.
+3. **Inconsistent Settings Menu Rumble**: If you spam-click the vibration test option in the Switch's controller settings menu, the rumble duration can feel inconsistent. This has only been noticed inside the system settings test screen; rumble behaves normally during actual gameplay.
+4. **No Battery Status**: The Switch does not display the actual battery percentage of the Xbox controller (it will always show a full battery icon).
+5. **No Gyro/Motion Control**: Gyroscope and motion controls are not supported (this is a hardware limitation of the Xbox controller itself, which lacks a gyroscope).
+6. **Tested Hardware**: This project has only been tested using an **Xbox Series S/X controller**, an **Arduino Nano 33 BLE Sense**, and a **Nintendo Switch 2** console. Other hardware revisions or controllers are untested.
+
